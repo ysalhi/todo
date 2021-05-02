@@ -1,0 +1,204 @@
+body {
+    margin: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.mainContainer {
+    width: 100%;
+    height:100vh;
+    background: url('../images/bg-desktop-light.jpg') top / contain no-repeat, hsl(0, 0%, 98%);
+    display: flex;
+    justify-content: center;
+}
+
+.centerContainer {
+    width: 37%;
+    padding-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.centerContainer .title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;   
+    padding-bottom: 2.9rem;
+}
+
+.centerContainer .title .appName {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1rem;
+}
+
+.centerContainer .title .darkModeIcon {
+    height:63%;
+    cursor: pointer;
+}
+
+.centerContainer .typeBox {
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    height: 4.3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.centerContainer .circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgb(149, 149, 149);
+    margin: 1.5rem;
+    flex-shrink: 0;
+}
+
+.centerContainer .circleTodo {
+    width: 22px;
+    height: 22px;
+    border: double 1px transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(white, white), radial-gradient(circle at top left, rgb(149, 149, 149),rgb(149, 149, 149));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    margin: 1.5rem;
+    flex-shrink: 0;
+}
+
+/*Ancienne version du circleTodo*/
+/* .centerContainer .circleTodo {
+    background-image: linear-gradient(white, white), radial-gradient(circle at top left, #f00,#3020ff);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgb(149, 149, 149);
+    margin: 1.5rem;
+    flex-shrink: 0;
+} */
+
+.centerContainer .typeBox .textBox {
+    width: 100%;
+    margin-right: 1.5rem;
+    height:2rem;
+    border: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    background-color: transparent;
+}
+
+.centerContainer .typeBox .textBox::placeholder {
+    color:rgb(163, 162, 162);
+    opacity: 1;
+}
+
+.centerContainer .typeBox .textBox:focus {
+    outline-width: 0;
+}
+
+.centerContainer .todoBox {
+    width: 100%;
+    background-color: white;
+    border-top-left-radius : 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0px 5px 15px -5px #000000;
+    display: none;
+}
+
+.centerContainer .todoBox .todo {
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid  rgb(218, 217, 217);
+}
+
+.centerContainer .todoBox .todo .todoLabel {
+    width: 100%;
+    margin-right: 1.5rem;
+    height:2rem;
+    border: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    color: rgb(57, 57, 57);
+}
+
+.centerContainer .bottomBox {
+    height: 2.7rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    width: 100%;
+    align-items: center;
+    color: rgb(163, 162, 162);
+    font-size: 0.9rem;
+    box-shadow: 0px 6px 15px -5px #000000;
+}
+
+.centerContainer .bottomBox .leftItems  {
+    margin-left: 1rem;
+}
+
+.centerContainer .bottomBox .filters  {
+    display: flex;
+}
+
+.centerContainer .bottomBox .filters .active {
+    color: hsl(220, 98%, 61%);
+}
+
+.centerContainer .bottomBox .filters .bold {
+    font-weight: 700;
+    margin: 0 8px;
+}
+
+.centerContainer .bottomBox .clear  {
+    margin-right: 1rem;
+}
+
+/*Mobile design */
+
+@media screen and (min-width: 100px) and (max-width: 768px) {
+    .mainContainer {
+        background: url('../images/bg-mobile-light.jpg') no-repeat, hsl(0, 0%, 98%);
+        background-size: contain;
+    }
+    
+    .centerContainer {
+        width: 85%;
+        padding-top: 3rem;
+    }
+
+    .centerContainer .title {
+        padding-bottom: 2.3rem;   
+    }
+
+    .centerContainer .title .appName {
+        color: white;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 1rem;
+    }
+
+    .centerContainer .typeBox {
+        height: 3.3rem;
+    }
+    
+    .centerContainer .circle {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .centerContainer .typeBox .textBox {
+        font-size: 0.8rem;
+    }
+}
