@@ -1,5 +1,6 @@
 var todos = [];
 var counter;
+var mode ="light";
 
 window.addEventListener('keypress', function(e) {
     text = document.getElementsByClassName("textBox")[0].value;
@@ -10,28 +11,49 @@ window.addEventListener('keypress', function(e) {
 });
 
 function switchDisplayMode() {
-    var todos;
     if (document.getElementById("modeIcon").getAttribute('src') === "./images/icon-moon.svg") {
         //From light To dark
+        mode = "dark";
         document.getElementById("modeIcon").setAttribute('src', "./images/icon-sun.svg");
         document.getElementsByClassName("mainContainer")[0].style.background = "url('./images/bg-desktop-dark.jpg') top / contain no-repeat, hsl(235, 21%, 11%)";
         document.getElementsByClassName("typeBox")[0].style.backgroundColor = "hsl(235, 24%, 19%)";
         document.getElementsByClassName("textBox")[0].style.color = "rgb(215, 215, 215)";
         document.getElementsByClassName("todoBox")[0].style.backgroundColor = "hsl(235, 24%, 19%)";
-        todos = document.getElementsByClassName("todo");
-        for (i = 0; i < todos.length; i++) {
-            todos[i].style.borderBottom = "1px solid  rgb(125, 125, 125)";
+        document.getElementsByClassName("bottomBox")[0].style.backgroundColor = "hsl(235, 24%, 19%)";
+        todoElements = document.getElementsByClassName("todo");
+        for (i = 0; i < todoElements.length; i++) {
+            todoElements[i].style.borderBottom = "1px solid  rgb(125, 125, 125)";
+            todoElements[i].getElementsByClassName("todoLabel")[0].style.color = "rgb(215, 215, 215)";
+            for (j= 0; j < todos.length; j++) {
+                if (todos[j].index == todoElements[i].id) {
+                    tableIndex = j;
+                }
+            }
+            if (!todos[tableIndex].completed) {
+                todoElements[i].getElementsByClassName("circleTodo")[0].style.backgroundImage = "linear-gradient(hsl(235, 24%, 19%), hsl(235, 24%, 19%)), radial-gradient(circle at top left, rgb(149, 149, 149), rgb(149, 149, 149))";
+            }
         }
     } else {
         //From dark to light
+        mode = "light";
         document.getElementById("modeIcon").setAttribute('src', "./images/icon-moon.svg");
         document.getElementsByClassName("mainContainer")[0].style.background = "url('./images/bg-desktop-light.jpg') top / contain no-repeat, hsl(0, 0%, 98%)";
         document.getElementsByClassName("typeBox")[0].style.backgroundColor = "white";
         document.getElementsByClassName("textBox")[0].style.color = "black";
         document.getElementsByClassName("todoBox")[0].style.backgroundColor = "white";
-        todos = document.getElementsByClassName("todo");
-        for (i = 0; i < todos.length; i++) {
-            todos[i].style.borderBottom = "1px solid  rgb(218, 217, 217)";
+        document.getElementsByClassName("bottomBox")[0].style.backgroundColor = "white";
+        todoElements = document.getElementsByClassName("todo");
+        for (i = 0; i < todoElements.length; i++) {
+            todoElements[i].style.borderBottom = "1px solid  rgb(218, 217, 217)";
+            todoElements[i].getElementsByClassName("todoLabel")[0].style.color = "rgb(57, 57, 57)";
+            for (j= 0; j < todos.length; j++) {
+                if (todos[j].index == todoElements[i].id) {
+                    tableIndex = j;
+                }
+            }
+            if (!todos[tableIndex].completed) {
+                todoElements[i].getElementsByClassName("circleTodo")[0].style.backgroundImage = "linear-gradient(white, white), radial-gradient(circle at top left, rgb(149, 149, 149), rgb(149, 149, 149))";
+            }
         }
     }
 }
@@ -44,7 +66,11 @@ function todoHover(index) {
     }
     if (!todos[tableIndex].completed) {
         var circle = document.getElementById(index).getElementsByClassName("circleTodo")[0]
-        circle.style.backgroundImage = "linear-gradient(white, white), radial-gradient(circle at top left, hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
+        if (mode === "light") {
+            circle.style.backgroundImage = "linear-gradient(white, white), radial-gradient(circle at top left, hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
+        } else {
+            circle.style.backgroundImage = "linear-gradient(hsl(235, 24%, 19%), hsl(235, 24%, 19%)), radial-gradient(circle at top left, hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
+        }
         circle.style.cursor = "pointer";
         circle.setAttribute('onclick', `completeTodo(${index})`)
     }
@@ -64,7 +90,11 @@ function todoOut(index) {
         }
     }
     if (!todos[tableIndex].completed) {
-        document.getElementById(index).getElementsByClassName("circleTodo")[0].style.backgroundImage = "linear-gradient(white, white), radial-gradient(circle at top left, rgb(149, 149, 149), rgb(149, 149, 149))";
+        if (mode === "light") {
+            document.getElementById(index).getElementsByClassName("circleTodo")[0].style.backgroundImage = "linear-gradient(white, white), radial-gradient(circle at top left, rgb(149, 149, 149), rgb(149, 149, 149))";
+        } else {
+            document.getElementById(index).getElementsByClassName("circleTodo")[0].style.backgroundImage = "linear-gradient(hsl(235, 24%, 19%), hsl(235, 24%, 19%)), radial-gradient(circle at top left, rgb(149, 149, 149), rgb(149, 149, 149))";
+        }
     }
     document.getElementById(index).removeChild(document.getElementById(index).childNodes[document.getElementById(index).childNodes.length - 1]);
 }
@@ -109,6 +139,10 @@ function addTodo(text) {
 
     labelElement = document.createElement("div");
     labelElement.classList.add("todoLabel");
+    if (mode === "dark") {
+        labelElement.style.color = "rgb(215, 215, 215)";
+    }
+
 
     label = document.createTextNode(newTodo.label);
     labelElement.appendChild(label);
