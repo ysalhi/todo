@@ -34,27 +34,28 @@
       </div>
       <div class="typeBox">
         <div class="circle"></div>
-        <input type="text" onclick="addTodo('test')" placeholder="Create a new todo..." class="textBox">
+        <input type="text" placeholder="Create a new todo..." class="textBox">
       </div>
       <div id="todoBox" class="todoBox"></div>
       <div class="bottomBox">
         <div class="leftItems">0 items left</div>
         <div class="filters">
-          <div id="all" class="bold active">All</div>
-          <div id="active" class="bold"> Active</div>
-          <div id="completed" class="bold">Completed</div>
+          <div id="all" class="bold active" onclick="showAllItems()">All</div>
+          <div id="active" class="bold" onclick="showActive()"> Active</div>
+          <div id="completed" class="bold" onclick="showCompleted()">Completed</div>
         </div>
-        <div class="clear">Clear Completed</div>
+        <div class="clear" onclick="clearCompleted()">Clear Completed</div>
         </div>
       <!-- Add dynamic number -->
-
-      Drag and drop to reorder list
-
-      <div class="attribution">
-        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-        Coded by <a href="#">Your Name Here</a>.
-      </div>
+      <div class="dragMsg">
+        Drag and drop to reorder list</div>
+  
+        <div class="attribution">
+          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+          Coded by <a href="https://github.com/ysalhi/" target="_blank">Yassir Salhi</a>.
+        </div>
     </div>
+    
   </div>
 </body>
 <script type="application/javascript" src="scripts/main.js"></script>
