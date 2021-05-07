@@ -184,6 +184,11 @@ input {
     margin: 0 auto;
 }
 
+/* Drag&Drop specific classes */
+.over {
+    transform: scale(1.1, 1.1);
+  }
+
 /*Mobile design */
 
 @media screen and (min-width: 100px) and (max-width: 768px) {
